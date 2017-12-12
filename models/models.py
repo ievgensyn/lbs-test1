@@ -21,4 +21,16 @@ class Test(models.Model):
     name = fields.Char(string="Title", required=True)
     purpose = fields.Text()
 
-    tester = fields.Many2one('res.partner', ondelete='set null', string="")
+    tester_id = fields.Many2one('res.partner', ondelete='set null', string="Tester", index=True)
+    #session_ids = fields.One2many('test.session', 'test_id', string="Sessions")
+
+
+class Session(models.Model):
+    _name = 'test.session'
+
+    name = fields.Char(required=True)
+    start_date = fields.Date()
+    end_date = fields.Date()
+    duration = fields.Integer(string="Duration in days")
+
+    #test_id = fields.Many2one('test.test', ondelete='cascade', string="Test", required=True)

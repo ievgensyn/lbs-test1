@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="test_list_action">
+            <field name="name">Tests</field>
+            <field name="res_model">test.test</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first test
+                </p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_test_menu" name="Test"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="test_menu" name="Test"
+                  parent="main_test_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent test_menu and *after* its
+             action test_list_action -->
+        <menuitem id="tests_menu" name="Tests" parent="test_menu"
+                  action="test_list_action"/>
+        <!-- Full id location:
+             action="test.test_list_action"
+             It is not required when it is the same module -->
+    </data>
+</odoo>

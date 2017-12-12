@@ -21,8 +21,8 @@ class Test(models.Model):
     name = fields.Char(string="Title", required=True)
     purpose = fields.Text()
 
-    tester_id = fields.Many2one('res.partner', ondelete='set null', string="Tester", index=True)
-    #session_ids = fields.One2many('test.session', 'test_id', string="Sessions")
+    responsible_id = fields.Many2one('res.users', ondelete='set null', string="Responsible", index=True)
+    session_ids = fields.One2many('test.session', 'test_id', string="Sessions")
 
 
 class Session(models.Model):
@@ -33,4 +33,5 @@ class Session(models.Model):
     end_date = fields.Date()
     duration = fields.Integer(string="Duration in days")
 
-    #test_id = fields.Many2one('test.test', ondelete='cascade', string="Test", required=True)
+    tester_id = fields.Many2one('res.partner', string="Tester")
+    test_id = fields.Many2one('test.test', ondelete='cascade', string="Test", required=True)

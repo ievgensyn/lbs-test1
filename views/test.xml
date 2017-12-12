@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <record model="ir.ui.view" id="test_form_view">
+            <field name="name">test.form</field>
+            <field name="model">test.test</field>
+            <field name="arch" type="xml">
+                <form string="Test Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="tester_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Purpose">
+                                <field name="purpose"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- search tests by name or by purpose-->
+        <record model="ir.ui.view" id="test_search_view">
+            <field name="name">test.search</field>
+            <field name="model">test.test</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="purpose"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- override the automatically genereted list view for tests -->
+        <record model="ir.ui.view" id="test_tree_view">
+            <field name="name">test.tree</field>
+            <field name="model">test.test</field>
+            <field name="arch" type="xml">
+                <tree string="Test Tree">
+                    <field name="name"/>
+                    <field name="tester_id"/>
+                </tree>
+            </field>
+        </record>
+
         <!-- window action -->
         <!--
             The following tag is an action definition for a "window action",
@@ -31,5 +75,32 @@
         <!-- Full id location:
              action="test.test_list_action"
              It is not required when it is the same module -->
+
+        <!-- session form view -->
+        <record model="ir.ui.view" id="session_form_view">
+            <field name="name">session.form</field>
+            <field name="model">test.session</field>
+            <field name="arch" type="xml">
+                <form string="Session Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="duration"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="session_list_action">
+            <field name="name">Test sessions</field>
+            <field name="res_model">test.session</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="session_menu" name="Tets sessions" parent="test_menu" action="session_list_action"/>
     </data>
 </odoo>

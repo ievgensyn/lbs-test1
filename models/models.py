@@ -31,7 +31,15 @@ class Session(models.Model):
     name = fields.Char(required=True)
     start_date = fields.Date()
     end_date = fields.Date()
-    duration = fields.Integer(string="Duration in days")
+    duration = fields.Integer("""compute='compute_date', """string="Duration in days")
+
+    # def compute_date(self):
+    #     a = start_date
+    #     b = end_date
+    #     delta = b - a
+    #     return delta
+
 
     tester_id = fields.Many2one('res.partner', string="Tester")
     test_id = fields.Many2one('test.test', ondelete='cascade', string="Test", required=True)
+    attendee_ids = fields.Many2many('res.partner', string="Attendees")

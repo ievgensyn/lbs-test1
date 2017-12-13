@@ -41,6 +41,18 @@
             </field>
         </record>
 
+        <!-- search session by name or by something else -->
+        <record model="ir.ui.view" id="session_search_view">
+           <field name="name">session.search</field>
+           <field name="model">test.session</field>
+           <field name="arch" type="xml">
+               <search>
+                   <field name="name"/>
+                   <field name="start_date"/>
+                </search>
+            </field>
+        </record>
+
         <!-- override the automatically genereted list view for tests -->
         <record model="ir.ui.view" id="test_tree_view">
             <field name="name">test.tree</field>
@@ -104,6 +116,8 @@
                                 <field name="duration"/>
                             </group>
                         </group>
+                        <label for="attendee_ids"/>
+                        <field name="attendee_ids"/>
                     </sheet>
                 </form>
             </field>

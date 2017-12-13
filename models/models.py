@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+from datetime import datetime
 
 # class test(models.Model):
 #     _name = 'test.test'
@@ -29,15 +30,16 @@ class Session(models.Model):
     _name = 'test.session'
 
     name = fields.Char(required=True)
-    start_date = fields.Date()
+    start_date = fields.Date(default=fields.Date.today)
     end_date = fields.Date()
-    duration = fields.Integer("""compute='compute_date', """string="Duration in days")
+    duration = fields.Float(string="Duration in days", compute='compute_delta')
 
-    # def compute_date(self):
-    #     a = start_date
-    #     b = end_date
-    #     delta = b - a
-    #     return delta
+    #@api.depends('start_date', 'end_date', 'duration')
+    def compute_delta(self):
+        for i in self:
+            start_date = fields.Datetime.from_string(i.start_date)
+            end_date = fields.Datetime.from_string(i.end_date)
+            i.duration = (end_date - start_date).days
 
 
     tester_id = fields.Many2one('res.partner', string="Tester")

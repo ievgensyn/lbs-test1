@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from datetime import datetime, timedelta
 
 # class test(models.Model):
 #     _name = 'test.test'
@@ -41,5 +40,4 @@ class Session(models.Model):
                 continue
             start_date = fields.Datetime.from_string(r.start_date)
             end_date = fields.Datetime.from_string(r.end_date)
-            r.duration = (end_date - start_date)
-
+            r.duration = (end_date - start_date).days

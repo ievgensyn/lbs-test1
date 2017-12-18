@@ -82,6 +82,17 @@
             </field>
         </record>
 
+        <!-- test session tree/list view -->
+        <record model="ir.ui.view" id="session_tree_view">
+            <field name="name">session.tree</field>
+            <field name="model">lbs.session</field>
+            <field name="arch" type="xml">
+                <tree string="Session Tree">
+                    <field name="test"/>
+                </tree>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="session_list_action">
             <field name="name">Test Session</field>
             <field name="res_model">lbs.session</field>

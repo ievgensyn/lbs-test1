@@ -9,11 +9,11 @@
                     <sheet>
                         <group>
                             <field name="name"/>
-                            <field name="description"/>
+                            <field name="tester"/>
                         </group>
                         <notebook>
-                            <page string="Description">
-                                <field name="description"/>
+                            <page string="Purpose">
+                                <field name="purpose"/>
                             </page>
                             <page string="About">
                                 This is an example of notebooks
@@ -30,7 +30,6 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
-                    <field name="description"/>
                 </search>
             </field>
         </record>
@@ -73,7 +72,7 @@
                 <form string="Session Form">
                     <sheet>
                         <group>
-                            <field name="name"/>
+                            <field name="test"/>
                             <field name="start_date"/>
                             <field name="end_date"/>
                             <field name="duration"/>

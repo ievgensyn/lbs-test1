@@ -57,12 +57,40 @@
         <!-- A first level in the left side menu is needed
              before using action= attribute -->
         <menuitem id="lbstest_menu" name="Test" parent="main_lbstest_menu"/>
-        <!-- the following menuitem should apper "after"
+        <!-- the following menuitem should appear "after"
              its parent lbstest_menu and "after" its
              action test_list_action -->
         <menuitem id="tests_menu" name="Tests" parent="lbstest_menu" action="test_list_action"/>
         <!-- Full id location:
              action="lbs.test_list_action"
              It is not required when it is the same module -->
+
+        <!-- session form view -->
+        <record model="ir.ui.view" id="session_form_view">
+            <field name="name">session.form</field>
+            <field name="model">lbs.session</field>
+            <field name="arch" type="xml">
+                <form string="Session Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="duration"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="session_list_action">
+            <field name="name">Test Session</field>
+            <field name="res_model">lbs.session</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- add to menuitem "after" ist parent 'lbstest_menu' -->
+        <menuitem id="session_menu" name="Test session" parent="lbstest_menu" action="session_list_action"/>
     </data>
 </odoo>

@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+
         <!-- window action -->
         <!--
             The following tag is an action definition for a "window action",
             that is an action opening a view or set of views
          -->
-        <record model="ir.action.act_window" id="test_list_action">
+         <record model="ir.actions.act_window" id="test_list_action">
             <field name="name">Tests</field>
             <field name="res_model">lbs.test</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">Creste the first test
+                <p class="oe_view_nocontent_create">Create the first test
                 </p>
             </field>
         </record>
+
 
         <!-- top level menu: no parent -->
         <menuitem id="main_lbstest_menu" name="Test"/>
         <!-- A first level in the left side menu is needed
              before using action= attribute -->
-        <menuitem id="lbstest_menu" name="Test" parent="main_lbstest_manu"/>
+        <menuitem id="lbstest_menu" name="Test" parent="main_lbstest_menu"/>
         <!-- the following menuitem should apper "after"
              its parent lbstest_menu and "after" its
              action test_list_action -->

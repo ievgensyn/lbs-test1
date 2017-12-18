@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <record model="ir.ui.view" id="test_form_view">
+            <field name="name">test.form</field>
+            <field name="model">lbs.test</field>
+            <field name="arch" type="xml">
+                <form string="Test Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+
+        </record>
 
         <!-- window action -->
         <!--

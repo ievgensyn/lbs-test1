@@ -20,7 +20,7 @@ class Test(models.Model):
 
     name = fields.Char(string="Title", required=True)
     purpose = fields.Text()
-    tester = fields.Many2one('res.partner', ondelete='set null', string="Tester")
+    tester = fields.Many2one('res.partner', ondelete='set null', string="Tester", domain=[('istester', '=', True)])
 
 
 # model test session:

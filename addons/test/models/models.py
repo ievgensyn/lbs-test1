@@ -13,3 +13,9 @@ from odoo import models, fields, api
 #     @api.depends('value')
 #     def _value_pc(self):
 #         self.value2 = float(self.value) / 100
+
+class Test(models.Model):
+    _name = 'lbs.test'
+
+    name = fields.Char(string="Title", required=True)
+    description = fields.Text()

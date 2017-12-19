@@ -14,5 +14,8 @@ class Partner(models.Model):
 class PartnerViews(models.Model):
     _inherit = 'res.partner'
 
-
+# the idea was to create a model, inherited from res.partner
+# using 'domain' in a field. in which to select the session's 'start_date'
+# as computed variable that gets all records in test session's partner
+# for next 30 days... + define this in partner.xml
 

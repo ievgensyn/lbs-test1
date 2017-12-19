@@ -8,4 +8,11 @@ class Partner(models.Model):
     # Add a new column to the res.partner model,
     # by default partners are not tester
     isTester = fields.Boolean("isTester", default=False, readonly=True)
-    session_ids = fields.Many2many('lbs.test', string="Test")
+    session_ids = fields.Many2many('lbs.test', ondelete='cascade', string="Test")
+
+
+class PartnerViews(models.Model):
+    _inherit = 'res.partner'
+
+
+

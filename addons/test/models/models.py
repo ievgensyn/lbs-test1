@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from datetime import timedelta
 from odoo import models, fields, api
 
 # class test(models.Model):
@@ -21,6 +22,32 @@ class Test(models.Model):
     name = fields.Char(string="Title", required=True)
     purpose = fields.Text()
     tester = fields.Many2one('res.partner', ondelete='set null', string="Tester", domain=[('istester', '=', True)])
+
+    # Add a duplicate option
+    @api.multi
+    def copy(self, default=None):
+        default = dict(default or {})
+
+        copied_count = self.search_count(
+            [('name', '=like', u"Copy of {}%".format(self.name))])
+        if not copied_count:
+            new_name = u"Copy of {}".format(self.name)
+        else:
+            new_name = u"Copy of {} ({})".format(self.name, copied_count)
+
+        default['name'] = new_name
+        return super(Test, self).copy(default)
+
+    # Add SQL constraints
+    _sql_constraints = [
+        ('name_purpose_check',
+         'CHECK(name != purpose)',
+         "The title of the test should not be the purpose"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "The test title must be unique"),
+    ]
 
 
 # model test session:
